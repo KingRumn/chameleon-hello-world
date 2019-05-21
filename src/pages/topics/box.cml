@@ -1,0 +1,40 @@
+<template>
+  <view>
+    <view c-for="{{list}}" c-for-index="i" c-for-item="item" class="row">
+      <view c-for="{{item}}" c-for-index="k" c-for-item="text" class="item">
+        <view>
+          <text>{{text}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+class Index {
+  data = {
+    list: [
+      ['A', 'B', 'C'],
+      ['D', 'E', 'F'],
+      ['G', 'H', 'I']
+    ]
+  }
+}
+export default new Index();
+</script>
+<style scoped>
+  .item{
+    flex:1;
+    justify-content: center;
+    align-items:center;
+    border-width:1;
+  }
+  .row{
+    flex-direction: row;
+    height:80cpx;
+  }
+</style>
+<script cml-type="json">
+{
+  "base": {}
+}
+</script>

@@ -7,6 +7,25 @@
       "path": "/pages/index/index",
       "name": "首页",
       "mock": "index.php"
+    },
+    {
+      "url": "/cml/h5/flex",
+      "path": "/pages/topics/flex",
+      "name": "flex布局",
+      "mock": "index.php"
+    },
+    {
+      "url": "/cml/h5/box",
+      "path": "/pages/topics/box",
+      "name": "盒模型",
+      "mock": "index.php"
+    },
+    {
+      "url": "/cml/h5/css",
+      "path": "/pages/topics/css",
+      "name": "盒模型",
+      "mock": "index.php"
     }
+
   ]
 }

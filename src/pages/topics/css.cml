@@ -1,0 +1,163 @@
+<template>
+    <view class="body">
+        <view class="topic">{{text.topicName}}</view>
+        <view class="topic-description-view">
+            <text class="sub-topic-description">{{text.topicDesc}}</text>
+        </view>
+        <view class="content">
+            <view class="sub-topic-area">
+                <view class="sub-topic-name">{{text.subTop[0].topicName}}</view>
+                <view class="sub-topic-description-view">
+                    <text class="sub-topic-description">{{text.subTop[0].topicDesc}}</text>
+                </view>
+                <view class="sub-topic-code-view">
+                    <view c-for="{{text.subTop[0].topicCode}}" c-key="{{item}}">
+                        <text class="code-line">{{item}}</text>
+                    </view>
+                </view>
+                <view class="sub-topic-example-view">
+                    <!--这里通过对static-class-example的引用使用style中定义的样式-->
+                    <view class="static-class-example">一段文本</view>
+                </view>
+
+            </view>
+            <view class="sub-topic-area">
+                <view class="sub-topic-name">{{text.subTop[1].topicName}}</view>
+                <view class="sub-topic-description-view">
+                    <view class="sub-topic-description">{{text.subTop[1].topicDesc}}</view>
+                </view>
+                <view class="sub-topic-code-view">
+                    <view c-for="{{text.subTop[1].topicCode}}" c-key="{{item}}">
+                        <text class="code-line">{{item}}</text>
+                    </view>
+                </view>
+                <view class="sub-topic-example-view">
+                    <!--这里通过计算preData.prefix的值可得真正的class为dynamic-class-example-->
+                    <view class="{{preData.prefix}}-class-example">一段文本</view>
+                </view>
+            </view>
+
+            <view class="sub-topic-area">
+                <view class="sub-topic-name">{{text.subTop[2].topicName}}</view>
+                <view class="sub-topic-description-view">
+                    <view class="sub-topic-description">{{text.subTop[2].topicDesc}}</view>
+                </view>
+                <view class="sub-topic-code-view">
+                    <view c-for="{{text.subTop[2].topicCode}}" c-key="{{item}}">
+                        <text class="code-line">{{item}}</text>
+                    </view>
+                </view>
+                <view class="sub-topic-example-view">
+                    <!--这里通过内联的style写入样式-->
+                    <view style="width: 550cpx; background-color:red;height: 100cpx;"></view>
+                </view>
+            </view>
+            <view class="sub-topic-area">
+                <view class="sub-topic-name">{{text.subTop[2].topicName}}</view>
+                <view class="sub-topic-description-view">
+                    <view class="sub-topic-description">{{text.subTop[2].topicDesc}}</view>
+                </view>
+                <view class="sub-topic-code-view">
+                    <view c-for="{{text.subTop[2].topicCode}}" c-key="{{item}}">
+                        <text class="code-line">{{item}}</text>
+                    </view>
+                </view>
+                <view class="sub-topic-example-view">
+                    <!--这里通过计算preData.inlineStyle获得真正的样式-->
+                    <view style="{{preData.inlineStyle}}"></view>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>
+<script>
+    class CssData {
+        data = {
+            text: {
+                topicName: '样式使用',
+                topicDesc: '样式引用有2种方式,普通写法和内联写法,其中普通写法的样式实现写在<style>中, 内联写法是直接将样式写在<templete>中,如style="width: 200cpx;".这两种方式均支持静态和动态2种写法.',
+                subTop: [{
+                        topicName: '普通写法-静态class',
+                        topicDesc: '直接采用class引用静态样式',
+                        topicCode: [
+                            '.static-class-example {',
+                            '    font-size: 14cpx;',
+                            '    color: red;',
+                            '    font-weight: 400;',
+                            '    text-align: center;',
+                            '    margin: 10cpx 20cpx;',
+                            '}',
+                            '<!--这里通过对static-class-example的引用使用style中定义的样式-->',
+                            '<view class="static-class-example">一段文本</view>'
+                        ],
+                        topicExample: '<view class="static-class-example">一段文本</view>'
+                    },
+                    {
+                        topicName: '普通写法-动态class',
+                        topicDesc: '通过{{}}中写入表达式的方法进行.目前 class 不支持传入对象的形式,简单数据绑定{{}}之内的内容被当做表达式处理.如{{prefix+"a"}}',
+                        topicCode: [
+                            '.dynamic-class-example {',
+                            '    font-size: 14cpx;',
+                            '    color: black;',
+                            '    font-weight: 400;',
+                            '    text-align: center;',
+                            '    margin: 10cpx 20cpx;',
+                            '}',
+                            ' <!--这里通过计算preData.prefix的值可得真正的class为dynamic-class-example-->',
+                            '<view class="static-class-example">一段文本</view>',
+                        ],
+                        topicExample: '<view class="static-class-example">一段文本</view>'
+                    },
+                    {
+                        topicName: '内联写法-静态',
+                        topicDesc: '模版中写内联样式，分为静态和动态两种，静态样式指纯字符串，动态样式是有数据绑定。style也不支持对象语法和数组语法； 目前可以使用的方式如下：',
+                        topicCode: [
+                            ' <!--这里通过内联的style写入样式-->',
+                            '<view style="width: 550cpx; background-color:red;height: 100cpx;"></view>',
+                        ],
+                        topicExample: '<view style="width: 550cpx; background-color:red;height: 100cpx;"></view>'
+                    },
+                    {
+                        topicName: '内联写法-动态',
+                        topicDesc: '',
+                        topicCode: [
+                            '<!--这里通过计算preData.inlineStyle获得真正的样式-->',
+                            '<view style="{{preData.inlineStyle}}"></view>',
+                        ],
+                        topicExample: '<view style="{{preData.inlineStyle}}"></view>'
+                    }
+                ]
+            },
+            preData: {
+                prefix: "dynamic",
+                inlineStyle: "width: 550cpx; background-color:black;height: 100cpx;"
+            }
+        }
+
+    }
+    export default new CssData();
+</script>
+<style scoped>
+    @import "./topic.css";
+
+    .static-class-example {
+        font-size: 14cpx;
+        color: red;
+        font-weight: 400;
+        text-align: center;
+        margin: 10cpx 20cpx;
+    }
+
+    .dynamic-class-example {
+        font-size: 14cpx;
+        color: black;
+        font-weight: 400;
+        text-align: center;
+        margin: 10cpx 20cpx;
+    }
+</style>
+<script cml-type="json">
+    {
+        "base": {}
+    }
+</script>

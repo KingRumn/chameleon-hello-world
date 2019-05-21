@@ -1,5 +1,5 @@
 <template>
-  <page title="chameleon">
+  <page title="{{title}}">
       <scroller height="{{-1}}">
         <view class="scroller-wrap">
           <demo-com title="{{title}}" image-src="{{chameleonSrc}}"></demo-com>
@@ -12,7 +12,7 @@
 
 class Index  {
   data = {
-    title: "chameleon",
+    title: "Hello World",
     chameleonSrc: require('../../assets/images/chameleon.png')
   }
 }
